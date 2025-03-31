@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Data.Models;
 
@@ -26,9 +27,18 @@ public partial class TimGiaSuContext : DbContext
     public virtual DbSet<LopHoc> LopHocs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=NGOCDIEM\\SQLEXPRESS,1433;Database=TimGiaSu;Trusted_Connection=True;Encrypt=False;");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var connectionString = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory()) // Đảm bảo đọc đúng file
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build()
+                .GetConnectionString("SqlConnection");
 
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Feedback>(entity =>
