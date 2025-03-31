@@ -1,0 +1,52 @@
+﻿<Window x:Class="Assignment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assignment"
+        mc:Ignorable="d"
+        Title="Trang Chủ - Tìm Gia Sư"
+        Height="750" Width="900"
+        Background="White">
+
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="TÌM GIA SƯ" FontSize="28" FontWeight="Bold"
+                       Foreground="Blue" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <Button Content="ĐĂNG NHẬP" Width="120" Height="40"
+                        Background="Green" Foreground="White" FontWeight="Bold"
+                         Margin="10" Click="Button_Click"/>
+                <Button Content="ĐĂNG KÝ" Width="120" Height="40"
+                        Background="Orange" Foreground="White" FontWeight="Bold"
+                         Margin="10" Click="Button_Click_1"/>
+            </StackPanel>
+
+            <TextBlock Text="📌 Danh sách lớp học" FontSize="18" FontWeight="Bold"
+                       Margin="0,10,0,5"/>
+            <ListView x:Name="ClassListView" Height="200" BorderThickness="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Tên Lớp" Width="250" DisplayMemberBinding="{Binding TenMonHoc}"/>
+                        <GridViewColumn Header="Gia Sư" Width="200" DisplayMemberBinding="{Binding GiaSu}"/>
+                        <GridViewColumn Header="Trạng Thái" Width="150" DisplayMemberBinding="{Binding TrangThai}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- Danh sách gia sư -->
+            <TextBlock Text="📌 Danh sách gia sư" FontSize="18" FontWeight="Bold"
+                       Margin="10,20,0,5"/>
+            <ListView x:Name="TutorListView" Height="200" BorderThickness="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Tên Gia Sư" Width="200" DisplayMemberBinding="{Binding TenGiaSu}"/>
+                        <GridViewColumn Header="Kinh Nghiệm" Width="200" DisplayMemberBinding="{Binding KinhNghiem}"/>
+                        <GridViewColumn Header="Bằng Cấp" Width="200" DisplayMemberBinding="{Binding BangCap}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>

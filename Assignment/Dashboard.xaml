@@ -1,0 +1,26 @@
+﻿<Window x:Class="Assignment.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dashboard" Height="500" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+
+        
+        <StackPanel Margin="10">
+            <TextBox Name="txtStatus" Height="60" TextWrapping="Wrap"
+                     Foreground="Gray" Text="Bạn đang nghĩ gì?"
+                     GotFocus="TxtStatus_GotFocus" LostFocus="TxtStatus_LostFocus"/>
+            <Button Content="Đăng" Click="BtnPost_Click" Margin="0,5,0,0"/>
+        </StackPanel>
+
+       
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Name="statusContainer" Margin="10"/>
+        </ScrollViewer>
+    </Grid>
+</Window>
